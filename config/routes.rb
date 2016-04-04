@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+    get 'api/upload'
+    get 'api/uploadapi'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,13 +55,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  map.resources :products
-
-  	# Allow downloading Web Service WSDL as a file with an extension
-  	# instead of a file named 'wsdl'
-  	map.connect ':controller/service.wsdl', :action => 'wsdl'
-
-   	# Install the default route as the lowest priority
-   	map.connect ':controller/:action/:id.:format'
-   	map.connect ':controller/:action/:id'
+  resources :api  do
+    get 'upload' => 'api#upload'
+  end
 end
